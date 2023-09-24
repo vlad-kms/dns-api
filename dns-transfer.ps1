@@ -213,6 +213,5 @@ if ($_commonVariable.isDeb) {
 
 if ($_commonVariable.isDeb) {
     $global:p=$PSBoundParameters
-    
     $global:cv=$_commonVariable
 }
