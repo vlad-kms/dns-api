@@ -211,5 +211,7 @@ if ($_commonVariable.isDeb) {
 
 #if ($Debug.IsPresent)
 
-$global:p=$PSBoundParameters
-$global:cv=$_commonVariable
+if ($_commonVariable.isDeb) {
+    $global:p=$PSBoundParameters
+    $global:cv=$_commonVariable
+}
