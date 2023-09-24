@@ -1,0 +1,7 @@
+**.idea
+**.vscode
+/*.ini
+/*.cfg
+*.iml
+**.test
+**.classes
