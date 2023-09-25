@@ -1,4 +1,4 @@
-class CommonVariable {
+﻿class CommonVariable {
     [string]$scriptPath="";
     [string]$DS=[System.IO.Path]::DirectorySeparatorChar;
     #[bool]$IsImportModule=$False;

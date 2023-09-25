@@ -1,4 +1,4 @@
-Param (
+п»їParam (
     [Parameter(ValueFromPipeline=$True, Position=0)]
     #[ValidateSet('selectel', 'mydns')]
     $Provider='selectel',
@@ -10,35 +10,35 @@ Param (
 )
 
 <###################################################
-Импорт модуля или подключение (дот-сорсинг) файла
-Очередность поиска и подключения:
-1. Сначала пробуем подключить модуль;
-    следующие шаги зависят от параметра $Sequence
-2. Ищем файла в $Path;
-3. Ищем файла в "$pwd\classes";
-4. Ищем файла в "$Env:AVVPATHCLASSES";
-Вход:
-    [string]$Name="avvClasses"  - имя модуля
-    [string]$Path=""            - путь для поиска файла
-    [int32]$Sequence=1 (1 or 2) - очередность каталогов для поиска:
+РРјРїРѕСЂС‚ РјРѕРґСѓР»СЏ РёР»Рё РїРѕРґРєР»СЋС‡РµРЅРёРµ (РґРѕС‚-СЃРѕСЂСЃРёРЅРі) С„Р°Р№Р»Р°
+РћС‡РµСЂРµРґРЅРѕСЃС‚СЊ РїРѕРёСЃРєР° Рё РїРѕРґРєР»СЋС‡РµРЅРёСЏ:
+1. РЎРЅР°С‡Р°Р»Р° РїСЂРѕР±СѓРµРј РїРѕРґРєР»СЋС‡РёС‚СЊ РјРѕРґСѓР»СЊ;
+    СЃР»РµРґСѓСЋС‰РёРµ С€Р°РіРё Р·Р°РІРёСЃСЏС‚ РѕС‚ РїР°СЂР°РјРµС‚СЂР° $Sequence
+2. РС‰РµРј С„Р°Р№Р»Р° РІ $Path;
+3. РС‰РµРј С„Р°Р№Р»Р° РІ "$pwd\classes";
+4. РС‰РµРј С„Р°Р№Р»Р° РІ "$Env:AVVPATHCLASSES";
+Р’С…РѕРґ:
+    [string]$Name="avvClasses"  - РёРјСЏ РјРѕРґСѓР»СЏ
+    [string]$Path=""            - РїСѓС‚СЊ РґР»СЏ РїРѕРёСЃРєР° С„Р°Р№Р»Р°
+    [int32]$Sequence=1 (1 or 2) - РѕС‡РµСЂРµРґРЅРѕСЃС‚СЊ РєР°С‚Р°Р»РѕРіРѕРІ РґР»СЏ РїРѕРёСЃРєР°:
                                   = 1: 
-                                        - 1. Ищем файла в $Path;
-                                        - 2. Ищем файла в "$pwd\classes";
-                                        - 3. Ищем файла в "$Env:AVVPATHCLASSES";
+                                        - 1. РС‰РµРј С„Р°Р№Р»Р° РІ $Path;
+                                        - 2. РС‰РµРј С„Р°Р№Р»Р° РІ "$pwd\classes";
+                                        - 3. РС‰РµРј С„Р°Р№Р»Р° РІ "$Env:AVVPATHCLASSES";
                                   = 2: 
-                                        - 1. Ищем файла в $Path;
-                                        - 2. Ищем файла в "$Env:AVVPATHCLASSES";
-                                        - 3. Ищем файла в "$pwd\classes";
+                                        - 1. РС‰РµРј С„Р°Р№Р»Р° РІ $Path;
+                                        - 2. РС‰РµРј С„Р°Р№Р»Р° РІ "$Env:AVVPATHCLASSES";
+                                        - 3. РС‰РµРј С„Р°Р№Р»Р° РІ "$pwd\classes";
     [int32]$ModDot=1            -   
-                                    = 1: сначала ищем модуль. Если нет модуля, то ищем файл
-                                    = 2: ищем только модуль. Если нет, то Exception
-                                    = 3: ищем только файл DotSourcing. Модуль вообще не ищем
-Возврат:
+                                    = 1: СЃРЅР°С‡Р°Р»Р° РёС‰РµРј РјРѕРґСѓР»СЊ. Р•СЃР»Рё РЅРµС‚ РјРѕРґСѓР»СЏ, С‚Рѕ РёС‰РµРј С„Р°Р№Р»
+                                    = 2: РёС‰РµРј С‚РѕР»СЊРєРѕ РјРѕРґСѓР»СЊ. Р•СЃР»Рё РЅРµС‚, С‚Рѕ Exception
+                                    = 3: РёС‰РµРј С‚РѕР»СЊРєРѕ С„Р°Р№Р» DotSourcing. РњРѕРґСѓР»СЊ РІРѕРѕР±С‰Рµ РЅРµ РёС‰РµРј
+Р’РѕР·РІСЂР°С‚:
     Hashtable
         What:
-            1 - импортировали модуль
-            2 - дот-сорсинг файла
-        Path: имя модуля, или полный путь файла дот-сорсинга
+            1 - РёРјРїРѕСЂС‚РёСЂРѕРІР°Р»Рё РјРѕРґСѓР»СЊ
+            2 - РґРѕС‚-СЃРѕСЂСЃРёРЅРі С„Р°Р№Р»Р°
+        Path: РёРјСЏ РјРѕРґСѓР»СЏ, РёР»Рё РїРѕР»РЅС‹Р№ РїСѓС‚СЊ С„Р°Р№Р»Р° РґРѕС‚-СЃРѕСЂСЃРёРЅРіР°
 ####################################################>
 function _findCommonModule {
     param (
@@ -56,9 +56,9 @@ function _findCommonModule {
         $m=(Get-Module -ListAvailable -Name "$($Name)")
     }
     if  ($null -eq $m) {
-            # нет модуля или ищем только файл DotSourcing
+            # РЅРµС‚ РјРѕРґСѓР»СЏ РёР»Рё РёС‰РµРј С‚РѕР»СЊРєРѕ С„Р°Р№Р» DotSourcing
         if ($ModDot -eq 2) {
-            throw "Не нашли требуемого модуля $($Name)"
+            throw "РќРµ РЅР°С€Р»Рё С‚СЂРµР±СѓРµРјРѕРіРѕ РјРѕРґСѓР»СЏ $($Name)"
         }
         $_fileName="$($Name).ps1"
         if ($Path) {
@@ -66,7 +66,7 @@ function _findCommonModule {
         } else {
             $_pathModule='pojsajcfufioyuytry7435'
         }
-        # пробуем найти файл в $Path
+        # РїСЂРѕР±СѓРµРј РЅР°Р№С‚Рё С„Р°Р№Р» РІ $Path
         if ( !(Test-Path -Path $_pathModule -PathType Leaf) ) {
             $_pmEnv=(Join-Path -Path "$Env:AVVPATHCLASSES" -ChildPath $_fileName)
             $_pmPwd=(Join-Path -Path (Get-Location) -ChildPath (Join-Path -Path "classes" -ChildPath $_fileName))
@@ -79,7 +79,7 @@ function _findCommonModule {
             }
             if (!(Test-Path -Path $_p1  -PathType Leaf)) {
                 if (!(Test-Path -Path $_p2  -PathType Leaf)) {
-                    throw "Не нашли требуемых модуля $($Name) и(или) файла $($_fileName)"
+                    throw "РќРµ РЅР°С€Р»Рё С‚СЂРµР±СѓРµРјС‹С… РјРѕРґСѓР»СЏ $($Name) Рё(РёР»Рё) С„Р°Р№Р»Р° $($_fileName)"
                 } else {
                     $_pathModule = $_p2
                 }
@@ -87,11 +87,11 @@ function _findCommonModule {
                 $_pathModule = $_p1
             }
         }
-        # включить файл
+        # РІРєР»СЋС‡РёС‚СЊ С„Р°Р№Р»
         . $_pathModule
         return @{'What'=2; 'Path'=$_pathModule}
     } else {
-        # модуль есть, импортируем его. Сначала выгрузим, затем заново загрузим
+        # РјРѕРґСѓР»СЊ РµСЃС‚СЊ, РёРјРїРѕСЂС‚РёСЂСѓРµРј РµРіРѕ. РЎРЅР°С‡Р°Р»Р° РІС‹РіСЂСѓР·РёРј, Р·Р°С‚РµРј Р·Р°РЅРѕРІРѕ Р·Р°РіСЂСѓР·РёРј
         if ((Get-Module -Name "$($Name)")) { Remove-Module "$($Name)" }
         Import-Module "$($Name)" -Force -ErrorAction Stop
         return @{'What'=1; 'Path'=$Name}
@@ -131,13 +131,13 @@ try {
     . .\commonVariable.ps1
 }
 catch {
-    throw "Ошибка подключения commonVariable.ps1";
+    throw "РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ commonVariable.ps1";
 }
 <#try {
     . .\includeModuleDotsourcing.ps1
 }
 catch {
-    throw "Ошибка подключения includeModuleDotsourcing.ps1";
+    throw "РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ includeModuleDotsourcing.ps1";
 }#>
 
 $_commonVariable.addProperties(@('IsImportModule', 'isDotSourcing', 'isDeb', 't1', 't2'), @($False, $False, $PSBoundParameters.Debug.IsPresent))
@@ -147,7 +147,7 @@ try {
     $nameModule = 'avvClasses';
     $m=(Get-Module -ListAvailable -Name "$($nameModule)")
     if ($null -ne $m) {
-        # модуль есть, импортируем его. Сначала выгрузим, затем заново загрузим
+        # РјРѕРґСѓР»СЊ РµСЃС‚СЊ, РёРјРїРѕСЂС‚РёСЂСѓРµРј РµРіРѕ. РЎРЅР°С‡Р°Р»Р° РІС‹РіСЂСѓР·РёРј, Р·Р°С‚РµРј Р·Р°РЅРѕРІРѕ Р·Р°РіСЂСѓР·РёРј
         if ((Get-Module -Name "$($nameModule)")) { Remove-Module "$($nameModule)" }
         Import-Module "$($nameModule)" -Force -ErrorAction Stop
         $_commonVariable.IsImportModule=$True
@@ -156,8 +156,8 @@ try {
     $_commonVariable.IsImportModule=$False
 }
 if ( ! $_commonVariable.IsImportModule) {
-    # Сначала подключаем модули из каталога .\classes\
-    # Если их там нет, то пробуем найти модули в $Env:AVVPATHCLASSES
+    # РЎРЅР°С‡Р°Р»Р° РїРѕРґРєР»СЋС‡Р°РµРј РјРѕРґСѓР»Рё РёР· РєР°С‚Р°Р»РѕРіР° .\classes\
+    # Р•СЃР»Рё РёС… С‚Р°Рј РЅРµС‚, С‚Рѕ РїСЂРѕР±СѓРµРј РЅР°Р№С‚Рё РјРѕРґСѓР»Рё РІ $Env:AVVPATHCLASSES
     $pathModules = '.\classes'
     $nameModules = @('avvBase.ps1', 'classCFG.ps1')
     if (existsFilesModules -Path $pathModules -Name $nameModules) {
@@ -200,7 +200,7 @@ if ($_commonVariable.IsImportModule) {
         $ini=[IniCFG]::New("E:\!my-configs\configs\src\dns-hostinger\dns-cli.ps1.ini")
     }
 } else {
-    throw "Ошибка при импорте $($nameModule) или dot-sourcing $($nameModules)"
+    throw "РћС€РёР±РєР° РїСЂРё РёРјРїРѕСЂС‚Рµ $($nameModule) РёР»Рё dot-sourcing $($nameModules)"
 }
 
 if ($_commonVariable.isDeb) {
